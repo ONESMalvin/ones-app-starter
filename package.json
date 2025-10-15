@@ -10,7 +10,7 @@
     "start": "nest start",
     "dev:agent": "ones_appv2_local_agent -s https://malvin688.k3s-dev.myones.net -a app_ljre19z901di43wc -t testmyrelaytoken -p 3000 > agent.log 2>&1",
     "dev:nest": "nest start --watch",
-    "start:dev": "concurrently -k -n agent,api -c blue,green \"npm:dev:agent\" \"npm:dev:nest\"",
+    "start:dev": "concurrently -k -n api,agent -c blue,green \"npm:dev:nest\" \"npm:dev:agent\" ",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -28,8 +28,11 @@
     "@nestjs/common": "^11.0.17",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/typeorm": "^11.0.0",
+    "jsonwebtoken": "^9.0.2",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.27"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -41,6 +44,7 @@
     "@swc/core": "^1.10.8",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
     "concurrently": "^9.2.1",

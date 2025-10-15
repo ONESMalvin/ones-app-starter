@@ -3,7 +3,7 @@
     "name": "Test App app_ljre19z901di43wc",
     "desc": "This is a Test App",
     "version": "v0.0.1",
-    "base_url": "https://example.com",
+    "base_url": "https://malvin688.k3s-dev.myones.net/platform/plugin_relay/app_dispatch/app_ljre19z901di43wc",
     "auth": {
       "type": "jwt"
     },
