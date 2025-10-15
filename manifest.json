@@ -1,0 +1,13 @@
+{
+    "id": "app_ljre19z901di43wc",
+    "name": "Test App app_ljre19z901di43wc",
+    "desc": "This is a Test App",
+    "version": "v0.0.1",
+    "base_url": "https://example.com",
+    "auth": {
+      "type": "jwt"
+    },
+    "lifecycle_callback": {
+      "install": "/install_cb"
+    }
+  }
