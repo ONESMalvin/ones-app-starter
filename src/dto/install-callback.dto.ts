@@ -18,6 +18,13 @@ export class InstallCallbackResp {
   time_stamp: number;
 }
 
+export class LifecycleCallbackReq {
+  installation_id: string;
+  callback_type: string;
+  time_stamp: number;
+  app?: AppInfo;
+}
+
 export class JWTClaims {
   iss: string; // 发行者 (ones_base_url)
   sub: string; // 受众 (installation_id)
@@ -35,6 +42,7 @@ export class JWTAssertionClaim {
   aud: string;
   exp: number;
   iat: number;
+  jti: string; // JWT ID
 }
 
 export class ONESEventAppV2 {

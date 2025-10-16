@@ -8,6 +8,13 @@
       "type": "jwt"
     },
     "lifecycle_callback": {
-      "install": "/install_cb"
+      "install": "/install_cb",
+      "enabled": "/enabled_cb"
+    },
+    "oauth": {
+        "type": ["app", "user"],
+        "scope": [
+            "read:account:teams"
+        ]
     }
   }

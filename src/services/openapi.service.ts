@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { InstallCallbackReq } from '../dto/install-callback.dto';
 
@@ -29,13 +29,12 @@ export class OpenApiService {
     const tokenUrl = new URL('/oauth2/token', onesUrl);
 
     const formData = new URLSearchParams();
-    formData.set('grant_type', 'client_credentials');
-    formData.set('client_assertion', tokenString);
-    formData.set('client_id', installationInfo.installation_id);
     formData.set(
-      'client_assertion_type',
+      'grant_type',
       'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
     );
+    formData.set('client_id', installationInfo.installation_id);
+    formData.set('assertion', tokenString);
 
     const response = await fetch(tokenUrl.toString(), {
       method: 'POST',
@@ -46,6 +45,9 @@ export class OpenApiService {
     });
 
     if (!response.ok) {
+      console.error(
+        `Failed to get access token: ${response.statusText}, response: ${await response.text()}`,
+      );
       throw new Error(`Failed to get access token: ${response.statusText}`);
     }
 
@@ -60,10 +62,18 @@ export class OpenApiService {
     method: string,
     body?: unknown,
   ): Promise<unknown> {
-    const accessToken = await this.getAccessToken(installationInfo, userID);
+    const accessToken = await this.getAccessToken(
+      installationInfo,
+      userID,
+    ).catch((error: unknown) => {
+      throw new HttpException(
+        `Failed to get access token: ${error instanceof Error ? error.message : 'unknown error'}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    });
 
     const onesUrl = new URL(installationInfo.ones_base_url);
-    const apiUrl = new URL(`/openapi/v2${api}`, onesUrl);
+    const apiUrl = new URL(`${api}`, onesUrl);
 
     const requestOptions: RequestInit = {
       method,

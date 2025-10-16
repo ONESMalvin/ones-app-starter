@@ -61,14 +61,18 @@ export class AuthService {
     installationInfo: InstallCallbackReq,
     userID: string,
   ): string {
+    const now = Math.floor(Date.now() / 1000);
+    const jti = crypto.randomUUID().replace(/-/g, '').substring(0, 16);
+
     const payload: JWTAssertionClaim = {
       uid: userID,
       rsh: '',
       iss: installationInfo.installation_id,
       sub: installationInfo.installation_id,
       aud: 'oauth',
-      exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24 hours later
-      iat: Math.floor(Date.now() / 1000),
+      exp: now + 24 * 60 * 60, // 24 hours later
+      iat: now,
+      jti: jti, // 生成16位JTI
     };
 
     const signKey = Buffer.from(installationInfo.shared_secret, 'base64');

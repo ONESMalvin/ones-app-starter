@@ -30,6 +30,9 @@ cmake-build-debug/
 ## File-based project format:
 *.iws
 
+## Database
+*.db
+
 ## Plugin-specific files:
 
 # IntelliJ
@@ -37,6 +40,7 @@ out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
+.vscode/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
