@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { InstallCallback } from './entities/install-callback.entity';
 import { DatabaseService } from './services/database.service';
 import { OpenApiService } from './services/openapi.service';
@@ -15,6 +17,13 @@ import { AuthService } from './services/auth.service';
       synchronize: true,
     }),
     TypeOrmModule.forFeature([InstallCallback]),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'web', 'dist'),
+      serveRoot: '/static',
+      serveStaticOptions: {
+        index: false,
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [DatabaseService, OpenApiService, AuthService],

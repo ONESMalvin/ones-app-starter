@@ -16,5 +16,13 @@
         "scope": [
             "read:account:teams"
         ]
-    }
+    },
+    "appSettingPages": [
+        {
+            "key":"settingPage",
+            "funcs": {
+                "customEntries": "/settingPage/entries"
+            }
+        }
+    ]
   }
