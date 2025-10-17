@@ -9,6 +9,8 @@ import {
   InstallCallbackReq,
   InstallCallbackResp,
   LifecycleCallbackReq,
+  SettingPageEntryRequest,
+  SettingPageEntriesResponse,
 } from './dto/install-callback.dto';
 
 @Controller()
@@ -99,5 +101,21 @@ export class AppController {
       );
     }
     res.status(HttpStatus.OK).send({ status: 'success', message: 'ok' });
+  }
+
+  @Post('/settingPage/entries')
+  handleSettingPageEntries(@Body() requestBody: SettingPageEntryRequest) {
+    console.log('handle /settingPage/entries, header:', requestBody);
+
+    const returnEntries: SettingPageEntriesResponse = {
+      entries: [
+        {
+          title: requestBody.language === 'zh' ? '示例页面' : 'Example page',
+          page_url: '/static/example-page.html',
+        },
+      ],
+    };
+
+    return returnEntries;
   }
 }
