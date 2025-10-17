@@ -1,11 +1,11 @@
 import React, { StrictMode } from 'react'
 import { render } from 'react-dom'
 import './index.css'
-import Page2 from './pages/Page2'
+import ExamplePage from './pages/ExamplePage'
 
 render(
   <StrictMode>
-    <Page2 />
+    <ExamplePage />
   </StrictMode>,
   document.getElementById('root')
 )

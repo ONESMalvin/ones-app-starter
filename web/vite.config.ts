@@ -17,8 +17,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        page1: './src/page1-main.tsx',
-        page2: './src/page2-main.tsx',
+        'example-page': './src/example-page-main.tsx',
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
