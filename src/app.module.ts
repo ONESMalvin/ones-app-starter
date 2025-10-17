@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { Response } from 'express';
 import { InstallCallback } from './entities/install-callback.entity';
 import { DatabaseService } from './services/database.service';
 import { OpenApiService } from './services/openapi.service';
@@ -22,6 +23,19 @@ import { AuthService } from './services/auth.service';
       serveRoot: '/static',
       serveStaticOptions: {
         index: false,
+        setHeaders: (res: Response) => {
+          // 设置CORS头信息
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader(
+            'Access-Control-Allow-Methods',
+            'GET, POST, PUT, DELETE, OPTIONS',
+          );
+          res.setHeader(
+            'Access-Control-Allow-Headers',
+            'Content-Type, Authorization, X-Requested-With',
+          );
+          res.setHeader('Access-Control-Allow-Credentials', 'true');
+        },
       },
     }),
   ],

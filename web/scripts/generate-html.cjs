@@ -44,12 +44,12 @@ function generateHTML(pageName, assets) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${title}</title>
-    ${cssFile ? `<link rel="stylesheet" crossorigin href="/static/assets/${cssFile}">` : ''}
-    ${sharedJsFile ? `<link rel="modulepreload" crossorigin href="/static/assets/${sharedJsFile}">` : ''}
+    ${cssFile ? `<link rel="stylesheet" crossorigin href="./assets/${cssFile}">` : ''}
+    ${sharedJsFile ? `<link rel="modulepreload" crossorigin href="./assets/${sharedJsFile}">` : ''}
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" crossorigin src="/static/assets/${jsFile}"></script>
+    <script type="module" crossorigin src="./assets/${jsFile}"></script>
   </body>
 </html>`;
 }
