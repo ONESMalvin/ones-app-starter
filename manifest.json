@@ -17,12 +17,14 @@
             "read:account:teams"
         ]
     },
-    "appSettingPages": [
-        {
-            "key":"settingPage",
-            "funcs": {
-                "customEntries": "/settingPage/entries"
+    "extensions": {
+        "appSettingPages": [
+            {
+                "key":"settingPage",
+                "funcs": {
+                    "customEntries": "/settingPage/entries"
+                }
             }
-        }
-    ]
+        ]
+    }
   }
