@@ -24,7 +24,7 @@ const ExamplePage: React.FC = () => {
       return;
     }
     setLoading(true);
-    setResult('正在调用 /v2/account/teams 接口...');
+    setResult('Calling /v2/account/teams API...');
     
     try {
       const res = await ONES.fetchOpenAPI('/v2/account/teams');
@@ -45,10 +45,10 @@ const ExamplePage: React.FC = () => {
       });
       
       setTeams(teamList);
-      setResult(`团队列表获取成功！\n\n接口响应:\n${JSON.stringify(data, null, 2)}`);
+      setResult(`Team list retrieved successfully!\n\nAPI Response:\n${JSON.stringify(data, null, 2)}`);
     } catch (error: unknown) {
-      console.error('获取团队列表失败:', error);
-      setResult(`获取团队列表失败: ${error instanceof Error ? error.message : String(error)}`);
+      console.error('Failed to get team list:', error);
+      setResult(`Failed to get team list: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setLoading(false);
     }
@@ -58,14 +58,14 @@ const ExamplePage: React.FC = () => {
     <div className="page">
       <div className="container">
         <h1>Hello World!</h1>
-        <p>欢迎来到 ONES 应用示例页面</p>
+        <p>Welcome to ONES App Example Page</p>
         <button 
           id="teams-api-button" 
           className="api-button"
           onClick={fetchTeams}
           disabled={loading}
         >
-          {loading ? '正在调用...' : '调用 /v2/account/teams 接口'}
+          {loading ? 'Calling...' : 'Call /v2/account/teams API'}
         </button>
         
         {result && (
@@ -76,14 +76,14 @@ const ExamplePage: React.FC = () => {
         
         {teams.length > 0 && (
           <div className="teams-list">
-            <h3>团队列表</h3>
+            <h3>Team List</h3>
             <div className="teams-grid">
               {teams.map((team) => (
                 <div key={team.id} className="team-card">
                   <h4>{team.name}</h4>
                   <p><strong>UUID:</strong> {team.id}</p>
-                  <p><strong>创建时间:</strong> {team.createdAt}</p>
-                  {team.owner && <p><strong>负责人:</strong> {team.owner}</p>}
+                  <p><strong>Created:</strong> {team.createdAt}</p>
+                  {team.owner && <p><strong>Owner:</strong> {team.owner}</p>}
                 </div>
               ))}
             </div>

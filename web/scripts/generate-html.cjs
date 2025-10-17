@@ -4,7 +4,7 @@ const path = require('path');
 const distDir = path.join(__dirname, '../dist');
 const assetsDir = path.join(distDir, 'assets');
 
-// 获取构建后的资源文件
+// Get built asset files
 function getAssetFiles() {
   if (!fs.existsSync(assetsDir)) {
     console.error('Assets directory not found. Please run build first.');
@@ -31,7 +31,7 @@ function getAssetFiles() {
   return assets;
 }
 
-// 生成 HTML 模板
+// Generate HTML template
 function generateHTML(pageName, assets) {
   const title = pageName === 'example-page' ? 'Example Page - AppV2' : 'AppV2';
   const jsFile = assets[pageName].js;
@@ -54,11 +54,11 @@ function generateHTML(pageName, assets) {
 </html>`;
 }
 
-// 主函数
+// Main function
 function main() {
   const assets = getAssetFiles();
   
-  // 生成 example-page.html
+  // Generate example-page.html
   const examplePageHTML = generateHTML('example-page', assets);
   fs.writeFileSync(path.join(distDir, 'example-page.html'), examplePageHTML);
   

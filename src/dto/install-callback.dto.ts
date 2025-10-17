@@ -26,17 +26,17 @@ export class LifecycleCallbackReq {
 }
 
 export class JWTClaims {
-  iss: string; // 发行者 (ones_base_url)
-  sub: string; // 受众 (installation_id)
-  aud: string; // 受众 (app_id)
-  exp: number; // 过期时间
-  iat: number; // 签发时间
-  uid: string; // 用户ID
+  iss: string; // Issuer (ones_base_url)
+  sub: string; // Subject (installation_id)
+  aud: string; // Audience (app_id)
+  exp: number; // Expiration time
+  iat: number; // Issued at time
+  uid: string; // User ID
 }
 
 export class JWTAssertionClaim {
-  uid: string; // 用户ID
-  rsh: string; // 请求hash
+  uid: string; // User ID
+  rsh: string; // Request hash
   iss: string;
   sub: string;
   aud: string;
@@ -58,21 +58,21 @@ export class ManhourOptions {
 }
 
 export class ManhourRequest {
-  type: string; // 预估、登记、剩余工时分类
-  action: string; // add、update、delete
+  type: string; // Estimated, registered, remaining work hours classification
+  action: string; // add, update, delete
   mode: string;
   options: ManhourOptions;
 }
 
 export class Entry {
-  title: string; // 设置项标题
-  page_url: string; // 设置项页面链接
+  title: string; // Setting item title
+  page_url: string; // Setting item page link
 }
 
 export class SettingPageEntryRequest {
-  user_uuid: string; // 用户UUID
-  language: string; // 语言
-  timezone: string; // 时区
+  user_uuid: string; // User UUID
+  language: string; // Language
+  timezone: string; // Timezone
 }
 
 export class SettingPageEntriesResponse {
@@ -81,7 +81,7 @@ export class SettingPageEntriesResponse {
 
 import { Request } from 'express';
 
-// 扩展的 Request 接口，包含中间件添加的属性
+// Extended Request interface with middleware-added properties
 export interface AuthenticatedRequest extends Request {
   installation_id: string;
   uid: string;

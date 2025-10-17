@@ -24,7 +24,7 @@ import { AuthService } from './services/auth.service';
       serveStaticOptions: {
         index: false,
         setHeaders: (res: Response) => {
-          // 设置CORS头信息
+          // Set CORS headers
           res.setHeader('Access-Control-Allow-Origin', '*');
           res.setHeader(
             'Access-Control-Allow-Methods',

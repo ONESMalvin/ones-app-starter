@@ -72,7 +72,7 @@ export class AuthService {
       aud: 'oauth',
       exp: now + 24 * 60 * 60, // 24 hours later
       iat: now,
-      jti: jti, // 生成16位JTI
+      jti: jti, // Generate 16-bit JTI
     };
 
     const signKey = Buffer.from(installationInfo.shared_secret, 'base64');
