@@ -1,9 +1,9 @@
 {
-    "id": "app_ljre19z901di43wc",
-    "name": "Test App",
-    "desc": "This is a Test App",
-    "version": "v0.0.1",
-    "base_url": "",
+    "id": "{{APP_ID}}",
+    "name": "{{APP_NAME}}",
+    "desc": "{{APP_DESCRIPTION}}",
+    "version": "{{APP_VERSION}}",
+    "base_url": "https://your-ones-server.com/platform/plugin_relay/app_dispatch/{{APP_ID}}",
     "auth": {
       "type": "jwt"
     },

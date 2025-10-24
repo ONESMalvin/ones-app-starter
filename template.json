@@ -1,0 +1,51 @@
+{
+  "name": "ONES App NestJS Template",
+  "description": "A full-stack template for building ONES applications with NestJS backend and React frontend",
+  "version": "1.0.0",
+  "author": "Your Name",
+  "license": "MIT",
+  "keywords": ["ones", "nestjs", "react", "typescript", "template"],
+  "variables": {
+    "APP_ID": {
+      "description": "ONES App ID",
+      "type": "string",
+      "required": true,
+      "default": "app_your_app_id"
+    },
+    "APP_NAME": {
+      "description": "App name",
+      "type": "string",
+      "required": true,
+      "default": "My ONES App"
+    },
+    "APP_DESCRIPTION": {
+      "description": "App description",
+      "type": "string",
+      "required": true,
+      "default": "A ONES application built with NestJS and React"
+    },
+    "APP_VERSION": {
+      "description": "App version",
+      "type": "string",
+      "required": true,
+      "default": "v0.0.1"
+    }
+  },
+  "files": {
+    "exclude": [
+      "node_modules",
+      "dist",
+      "coverage",
+      "*.log",
+      ".DS_Store",
+      "*.db",
+      "*.sqlite"
+    ]
+  },
+  "postInstall": {
+    "commands": [
+      "npm install",
+      "cd web && npm install"
+    ]
+  }
+}

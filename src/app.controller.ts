@@ -27,9 +27,27 @@ export class AppController {
     try {
       const manifestPath = join(process.cwd(), 'manifest.json');
       const manifestData = readFileSync(manifestPath, 'utf8');
+      const manifest = JSON.parse(manifestData) as {
+        id: string;
+        [key: string]: any;
+      };
+
+      // Validate required fields
+      if (!manifest.id) {
+        throw new Error('Missing required field: id');
+      }
+
+      // Set dynamic base_url if ONES_SERVER_URL is available
+      if (process.env.ONES_SERVER_URL) {
+        manifest.base_url = `${process.env.ONES_SERVER_URL}/platform/plugin_relay/app_dispatch/${manifest.id}`;
+      }
+
       res.setHeader('Content-Type', 'application/json');
-      res.send(manifestData);
-    } catch {
+      res.send(JSON.stringify(manifest, null, 2));
+    } catch (error) {
+      this.logger.error(
+        `Failed to read manifest file: ${error instanceof Error ? error.message : 'unknown error'}`,
+      );
       throw new HttpException(
         'Failed to read manifest file',
         HttpStatus.INTERNAL_SERVER_ERROR,

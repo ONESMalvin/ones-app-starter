@@ -1,98 +1,175 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# ONES App NestJS Template
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A full-stack template for building ONES applications with NestJS backend and React frontend.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- 🚀 **NestJS Backend** - TypeScript-based Node.js framework
+- ⚛️ **React Frontend** - Modern React application built with Vite
+- 🎨 **ONES Design** - Integrated ONES design system components
+- 📦 **TypeScript** - Full-stack TypeScript support
+- 🗄️ **TypeORM** - Database ORM support
+- 🔧 **Development Tools** - ESLint, Prettier, Jest testing
+- 📱 **Responsive Design** - Mobile-friendly UI
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Quick Start
 
-## Project setup
+### Create New Project with Template
 
 ```bash
-$ npm install
+# Using local CLI (no publish)
+npm i
+npm link          # link create-ones-app to your system
+create-ones-app my-app
+
+# If published, you could also run:
+# npx create-ones-app@latest my-app
+
+# Or clone template directly (manual)
+# git clone https://github.com/your-username/ones-app-nestjs-template.git my-app
+# cd my-app
 ```
 
-## Compile and run the project
+### Configure Project
+
+1. Copy environment configuration file:
+```bash
+cp env.example .env
+```
+
+2. Edit `.env` file and configure the following variables:
+```env
+APP_ID=your_app_id
+APP_NAME=Your App Name
+APP_DESCRIPTION=Your app description
+ONES_SERVER_URL=https://your-ones-server.com
+RELAY_TOKEN=your_relay_token
+```
+
+3. Update configuration information in `manifest.json`
+
+### Install Dependencies
 
 ```bash
-# development
-$ npm run start
+# Install backend dependencies
+npm install
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# Install frontend dependencies
+cd web
+npm install
+cd ..
 ```
 
-## Run tests
+## Development
+
+### Start Development Server
 
 ```bash
-# unit tests
-$ npm run test
+# Start backend development server (with proxy)
+npm run start:dev
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# Or start separately
+npm run dev:nest    # Start NestJS server
+npm run dev:agent   # Start ONES agent
 ```
+
+### Frontend Development
+
+```bash
+cd web
+npm run dev         # Start frontend development server
+npm run build       # Build frontend resources
+```
+
+### Build Project
+
+```bash
+# Build backend
+npm run build
+
+# Build frontend
+cd web && npm run build
+```
+
+### Run Tests
+
+```bash
+# Unit tests
+npm run test
+
+# E2E tests
+npm run test:e2e
+
+# Test coverage
+npm run test:cov
+```
+
+## Project Structure
+
+```
+├── src/                    # NestJS backend source code
+│   ├── app.controller.ts   # Main controller
+│   ├── app.module.ts       # Main module
+│   ├── dto/               # Data transfer objects
+│   ├── entities/          # Database entities
+│   └── services/          # Business services
+├── web/                   # React frontend source code
+│   ├── src/              # Frontend source code
+│   ├── dist/             # Build output
+│   └── package.json      # Frontend dependencies
+├── test/                 # Test files
+├── manifest.json         # ONES app configuration
+├── template.json         # Template configuration
+└── package.json          # Backend dependencies and scripts
+```
+
+## Configuration
+
+### manifest.json
+
+ONES app configuration file, including:
+- App ID and basic information
+- Authentication configuration
+- Lifecycle callbacks
+- OAuth permissions
+- Extension feature configuration
+
+### Environment Variables
+
+Create `.env` file and configure the following variables:
+- `APP_ID`: ONES app ID
+- `APP_NAME`: App name
+- `ONES_SERVER_URL`: ONES server address
+- `RELAY_TOKEN`: Development proxy token
+- `PORT`: Server port (default: 3000)
+
+The development agent will automatically load these variables from the `.env` file when running `npm run dev:agent`.
 
 ## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Build Production Version
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Build backend
+npm run build
+
+# Build frontend
+cd web && npm run build
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Start Production Server
+
+```bash
+npm run start:prod
+```
 
 ## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- [NestJS Documentation](https://docs.nestjs.com/)
+- [ONES Development Documentation](https://developer.ones.com/)
+- [React Documentation](https://reactjs.org/)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+MIT License
