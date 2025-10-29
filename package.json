@@ -37,6 +37,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev:agent": "node scripts/start-agent.js",
+    "predev:nest": "npm --prefix web run build",
     "dev:nest": "nest start --watch",
     "start:dev": "concurrently -k -n api,agent -c blue,green \"npm:dev:nest\" \"npm:dev:agent\" ",
     "start:debug": "nest start --debug --watch",
